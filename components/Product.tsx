@@ -1,9 +1,9 @@
 import Image from "next/image";
 
-export default function Product({ item }: any) {
+export default function Product({ item, handle }: any) {
     const { image, title, gene, age, price } = item;
     return (
-        <div className="px-[8px] pt-[8px] h-fit" key={item.id}>
+        <div className="px-[8px] pt-[8px] h-fit" key={item.id} onClick={handle}>
             <Image
                 src={item.image}
                 alt=""

@@ -2,9 +2,15 @@
 import Product from "@/components/Product";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Home() {
     const router = useRouter();
+    const [filter, setFilter] = useState("");
+    const handleFilterChange = (e: any) => {
+        setFilter(e.target.value);
+        console.log(filter);
+    };
     const data = [
         {
             id: 1,
@@ -34,6 +40,38 @@ export default function Home() {
             id: 4,
             image: "/card4.jpg",
             title: "Blouse and belted skirt",
+            gene: "Female",
+            age: "Ranges",
+            price: " N8.900.000",
+        },
+        {
+            id: 5,
+            image: "/card5.jpg",
+            title: "Ankara suit",
+            gene: "Male",
+            age: "Ranges",
+            price: " N8.900.000",
+        },
+        {
+            id: 6,
+            image: "/card6.jpg",
+            title: "Brown ball gown",
+            gene: "Female",
+            age: "0 - 11",
+            price: " N8.900.000",
+        },
+        {
+            id: 7,
+            image: "/card7.jpg",
+            title: "Male suit",
+            gene: "Male",
+            age: "Ranges",
+            price: " N8.900.000",
+        },
+        {
+            id: 8,
+            image: "/card8.jpg",
+            title: "Flared gown",
             gene: "Female",
             age: "Ranges",
             price: " N8.900.000",
@@ -181,17 +219,42 @@ export default function Home() {
                 </h3>
             </div>
             <div>
-                <div className="flex mx-auto ">
+                <div className="grid grid-cols-[30%_35%_35%] items-center mx-auto">
                     <span className="text-primary font-[700] text-[24px]">
                         Filter
                     </span>
+
                     <div className="flex items-baseline">
-                        <span className="text-primary font-[700] text-[24px] ml-[276px] mr-[10px]">
+                        <span className="text-primary font-[700] text-[24px] mr-[10px]">
                             Ankara styles
                         </span>
                         <span className="text-[#5B5B5B] font-[400] text-[14px]">
                             Male & Female
                         </span>
+                    </div>
+                    <div className="grid grid-cols-[1fr_auto] items-center justify-between">
+                        <input
+                            type="text"
+                            onChange={handleFilterChange}
+                            className="w-full p-4 outline-none text-primary "
+                            placeholder="Search for the product you need..."
+                        />
+                        <button className="p-4 text-white bg-primary  rounded-[5px]">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                                className="w-6 h-6"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                                />
+                            </svg>
+                        </button>
                     </div>
                 </div>
                 <div className="mx-auto pt-[48px] grid grid-cols-[1fr_4fr] gap-[59px]">
@@ -298,12 +361,16 @@ export default function Home() {
                     <div className="grid gap-x-[17px] gap-y-[24px] grid-cols-4 ">
                         {data.length > 0 &&
                             data.map((item) => (
-                                <Product key={item.id} item={item}></Product>
+                                <Product
+                                    key={item.id}
+                                    item={item}
+                                    handle={() => router.push("/detail")}
+                                ></Product>
                             ))}
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-2 pb-[97px] ">
+            <div className="grid grid-cols-2 ">
                 <div className="pt-[143px] flex h-[34px] gap-x-[12px] items-center col-start-2 col-end-3">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -371,7 +438,7 @@ export default function Home() {
                     </svg>
                 </div>
             </div>
-            <div className="bg-primary rounded-[20px] mt-[239px] mx-[160px] pb-[43.5px]">
+            <div className="bg-primary rounded-[20px] mt-[171px] mx-[160px] pb-[43.5px]">
                 <h3 className=" font-bold text-[24px] text-white text-center pt-[43.5px] px-[100px] pb-[54px]">
                     Sign up now so your selected item are saved to your personal
                     cart.
