@@ -1,7 +1,14 @@
 import Image from "next/image";
+import { useState } from "react";
 
-export default function Product({ item, handle }: any) {
+export default function Product({ item, handle, onClick }: any) {
     const { image, title, gene, age, price } = item;
+
+    const handleAddProduct = (event: any) => {
+        event.stopPropagation();
+        onClick();
+    };
+
     return (
         <div className="px-[8px] pt-[8px] h-fit" key={item.id} onClick={handle}>
             <Image
@@ -41,7 +48,10 @@ export default function Product({ item, handle }: any) {
                         {item.price}
                     </h3>
                 </div>
-                <div className="p-[10px] bg-[#3734A9] rounded-[20px] h-fit">
+                <div
+                    className="p-[10px] bg-[#3734A9] rounded-[20px] h-fit"
+                    onClick={handleAddProduct}
+                >
                     <Image
                         src="/xe.svg"
                         alt=""

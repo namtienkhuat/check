@@ -1,6 +1,18 @@
+"use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Detail() {
+    const [change, setChange] = useState(0);
+    const [result, setResult] = useState("");
+    const handleChange = () => {
+        setChange(change + 1);
+        console.log(change);
+    };
+    useEffect(() => {
+        if (change === 1) setResult("San pham da duoc them!");
+        if (change === 2) setResult("San pham da duoc them truoc do!");
+    }, [change]);
     return (
         <main className="px-[120px]">
             <div className="px-[40.75px] py-[26.5px] flex items-center justify-between mx-auto">
@@ -327,13 +339,17 @@ export default function Detail() {
                     </div>
                 </div>
                 <div className="flex mt-[32px] gap-x-[54px]">
-                    <button className="py-[19px] px-[89px] text-white bg-primary font-bold text-[18px] rounded-[10px]">
+                    <button
+                        className="py-[19px] px-[89px] text-white bg-primary font-bold text-[18px] rounded-[10px]"
+                        onClick={handleChange}
+                    >
                         Add to cart
                     </button>
                     <button className=" py-[19px] px-[89px] text-primary bg-white border border-solid border-[#3734A9] font-bold text-[18px] rounded-[10px]">
                         Pay immediately
                     </button>
                 </div>
+                {result != "" && <h1>{result}</h1>}
             </div>
             <div className="bg-primary rounded-[20px] mt-[239px] mx-[160px] pb-[43.5px]">
                 <h3 className=" font-bold text-[24px] text-white text-center pt-[43.5px] px-[100px] pb-[54px]">
